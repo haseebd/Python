@@ -1,6 +1,6 @@
+#kivy imports
 import kivy
 kivy.require('1.8.0')
-
 from kivy.app import App
 from kivy.uix.screenmanager import Screen, ScreenManager
 from kivy.uix.boxlayout import BoxLayout
@@ -15,55 +15,54 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 
+
 class ScreenOne(Screen):
-    
+# Class for First Screen of App    
     def __init__ (self,**kwargs):
         super (ScreenOne, self).__init__(**kwargs)
-        
+        # Layout
         my_box1 = BoxLayout(orientation='vertical')
         my_box2 = BoxLayout(orientation='horizontal')
         
+        # Labels
         my_label1 = Label(text="HD Coding Presents", size_hint_y=None, font_size="15sp", height = 150)
         my_label2 = Label(text="Four\nHundred", font_size="100sp", halign="center", valign="middle")
         my_label3 = Label(text="Score Tracker", font_size="25sp")
         my_label4 = Label(text="by Haseeb Durrani", font_size="15sp")
         
-        
+        # Buttons to toggle between screens
         my_button1 = Button(text="Screen 2",size_hint_y=None, size_y=75)
         my_button1.bind(on_press=self.changer1)
         my_button2 = Button(text="Screen 3",size_hint_y=None, size_y=75)
         my_button2.bind(on_press=self.changer2)
         
-        
+        # Adding labels and buttons as widgets to the layout
         my_box1.add_widget(my_label1)
         my_box1.add_widget(my_label2)
         my_box1.add_widget(my_label3)
         my_box1.add_widget(my_label4)
-        
         my_box1.add_widget(my_box2)
-        
         my_box2.add_widget(my_button1)
         my_box2.add_widget(my_button2)
         
         self.add_widget(my_box1)
     
+    # Methods used by screen changing buttons
     def changer1(self,*args):
         self.manager.current = 'screen2'
     def changer2(self,*args):
         self.manager.current = 'screen3'
 
 class ScreenTwo(Screen):
-    
+# Class for Second Screen of App   
     def __init__(self,**kwargs):
         super (ScreenTwo,self).__init__(**kwargs)
-        
+        # Layout
         box = BoxLayout(orientation='vertical')
         layout = GridLayout(cols = 8, size_hint=(1, 4))
         box.add_widget(layout)
-        
         box2 = BoxLayout(orientation='horizontal')
         box.add_widget(box2)
-        
         box3 = BoxLayout(orientation='horizontal')
         box.add_widget(box3)
         
@@ -150,61 +149,53 @@ class ScreenTwo(Screen):
         self.txt8 = TextInput(text='', font_size = "50sp",  multiline=False)
         layout.add_widget(self.txt8)
         
-        
+        # Yes/No Buttons if player made or didn't make the number of books they called
         btn5 = Button(text="Yes", background_color=(0.0, 1.0, 0.0, 1.0))
         btn5.bind(on_press=self.p1yes)
         layout.add_widget(btn5)
-        
         btn6 = Button(text="No", background_color=(1.0, 0.0, 0.0, 1.0))
         btn6.bind(on_press=self.p1no)
         layout.add_widget(btn6)
-        
         btn7 = Button(text="Yes", background_color=(0.0, 1.0, 0.0, 1.0))
         btn7.bind(on_press=self.p2yes)
         layout.add_widget(btn7)
-        
         btn8 = Button(text="No", background_color=(1.0, 0.0, 0.0, 1.0))
         btn8.bind(on_press=self.p2no)
         layout.add_widget(btn8)
-        
         btn9 = Button(text="Yes", background_color=(0.0, 1.0, 0.0, 1.0))
         btn9.bind(on_press=self.p3yes)
         layout.add_widget(btn9)
-        
         btn10 = Button(text="No", background_color=(1.0, 0.0, 0.0, 1.0))
         btn10.bind(on_press=self.p3no)
         layout.add_widget(btn10)
-        
         btn11 = Button(text="Yes", background_color=(0.0, 1.0, 0.0, 1.0))
         btn11.bind(on_press=self.p4yes)
         layout.add_widget(btn11)
-        
         btn12 = Button(text="No", background_color=(1.0, 0.0, 0.0, 1.0))
         btn12.bind(on_press=self.p4no)
         layout.add_widget(btn12)
         
+        # Reset Buttons
         resetnames_button = Button(text="Reset\nNames",size_hint_y=None, size_y=70)
         resetnames_button.bind(on_press=self.resetnames)
         box2.add_widget(resetnames_button)
-        
         resetcalls_button = Button(text="Reset\nCalls",size_hint_y=None, size_y=70)
         resetcalls_button.bind(on_press=self.resetcalls)
         box2.add_widget(resetcalls_button)
-        
         resetall_button = Button(text="Reset\nGame",size_hint_y=None, size_y=70)
         resetall_button.bind(on_press=self.resetall)
         box2.add_widget(resetall_button)
         
+        # Label and Button to check if minimum amout of calls is achieved
         self.lbl21 = Label(text="Total Calls:", size_hint_y=None, size_y=100)
         box2.add_widget(self.lbl21)
-        
         self.lbl22 = Label(text="", size_hint_y=None, size_y=100)
         box2.add_widget(self.lbl22)
-        
         checkcalls_button = Button(text="Check Calls",size_hint_y=None, size_y=70)
         checkcalls_button.bind(on_press=self.checkcalls)
         box2.add_widget(checkcalls_button)
         
+        # Buttons to toggle between screens
         my_button1 = Button(text="Screen 1",size_hint_y=None, size_y=100)
         my_button1.bind(on_press=self.changer1)
         box3.add_widget(my_button1)
@@ -212,31 +203,23 @@ class ScreenTwo(Screen):
         my_button2.bind(on_press=self.changer2)
         box3.add_widget(my_button2)
         
-        
-        
-        
-        
         self.add_widget(box)
     
     
     
     
-    # button click function
-    
+    # Methods for Reset Buttons
     def resetnames(self,btn):
         self.lbl2.text = "P1"
         self.lbl4.text = "P2"
         self.lbl6.text = "P3"
         self.lbl8.text = "P4"
-    
     def resetcalls(self,btn):
-        
         self.txt5.text = ""
         self.txt6.text = ""
         self.txt7.text = ""
         self.txt8.text = ""
         self.lbl22.text = ""
-    
     def resetall(self,btn):
         self.lbl2.text = "P1"
         self.lbl4.text = "P2"
@@ -254,7 +237,7 @@ class ScreenTwo(Screen):
         self.txt6.text = ""
         self.txt7.text = ""
         self.txt8.text = ""
-    
+    # Method for check calls button
     def checkcalls(self,btn):
         try:
             calls_total = int(self.txt5.text) + int(self.txt6.text) + int(self.txt7.text) + int(self.txt8.text)
@@ -269,8 +252,7 @@ class ScreenTwo(Screen):
                 pass
         except:
             pass
-    
-    
+        
     # Ok Buttons to confirm player name input
     def p1name(self,btn):
         if len(self.txt1.text) > 0:
@@ -292,7 +274,7 @@ class ScreenTwo(Screen):
             self.lbl8.text = self.txt4.text
             self.txt4.text = ""
 
-# Yes/No Buttons to calculate player after a hand
+# Yes/No Buttons to calculate player score after a hand
     def p1yes(self,btn):
     
         try:
@@ -398,45 +380,48 @@ class ScreenTwo(Screen):
         
         self.txt8.text = ""
     
+     # Methods used by screen changing buttons
     def changer1(self,*args):
         self.manager.current = 'screen1'
-    
     def changer2(self,*args):
         self.manager.current = 'screen3'
 
 class ScreenThree(Screen):
-    
+# Class for Third Screen of App    
     def __init__ (self,**kwargs):
         super (ScreenThree, self).__init__(**kwargs)
-        
+        # Layout
         my_box1 = BoxLayout(orientation='vertical')
         my_box2 = BoxLayout(orientation='horizontal')
         
+        # Label
         my_label1 = Label(text="Coming Soon .....", font_size="30sp", size_hint_y=None, height = 100)
         
+        # Buttons to toggle between screens
         my_button1 = Button(text="Screen 1",size_hint_y=None, size_y=100)
         my_button1.bind(on_press=self.changer1)
         my_button2 = Button(text="Screen 2",size_hint_y=None, size_y=100)
         my_button2.bind(on_press=self.changer2)
         
+        # Adding labels and buttons as widgets to the layout
         my_box1.add_widget(my_label1)
-        
         my_box1.add_widget(my_box2)
-        
         my_box2.add_widget(my_button1)
         my_box2.add_widget(my_button2)
         
         self.add_widget(my_box1)
     
+    # Methods used by screen changing buttons
     def changer1(self,*args):
         self.manager.current = 'screen1'
-    
     def changer2(self,*args):
         self.manager.current = 'screen2'
 
 
 class Four100(App):
+# Class for App
     def build(self):
+        # Adding screens to the App
         my_screenmanager = ScreenManager()
         screen1 = ScreenOne(name='screen1')
         screen2 = ScreenTwo(name='screen2')
@@ -446,5 +431,6 @@ class Four100(App):
         my_screenmanager.add_widget(screen3)
         return my_screenmanager
 
+# Run App
 if __name__ == '__main__':
     Four100().run()
