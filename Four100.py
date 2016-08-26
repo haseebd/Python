@@ -15,7 +15,6 @@ from kivy.uix.label import Label
 from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen
 
-
 class ScreenOne(Screen):
 # Class for First Screen of App    
     def __init__ (self,**kwargs):
